@@ -23,7 +23,7 @@ public class User {
 
     @NotNull
     @Min(0)
-    private int age;
+    private Integer age;
 
     @NotBlank
     private String address;

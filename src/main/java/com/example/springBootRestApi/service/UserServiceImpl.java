@@ -37,12 +37,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Long id, User user) {
-        return null;
+    public User updateUser(Long id, User requestBody) {
+        User user = getUser(id);
+        user.setName(requestBody.getName() == null ? user.getName() : requestBody.getName());
+        user.setAge(requestBody.getAge() == null ? user.getAge() : requestBody.getAge());
+        user.setAddress(requestBody.getAddress() == null ? user.getAddress() : requestBody.getAddress());
+        return userRepository.save(user);
     }
 
     @Override
     public void deleteUser(Long id) {
-
+        getUser(id);
+        userRepository.deleteById(id);
     }
 }
