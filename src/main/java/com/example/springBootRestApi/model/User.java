@@ -5,7 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -19,7 +21,8 @@ public class User {
     @NotBlank
     private String name;
 
-    @NotBlank
+    @NotNull
+    @Min(0)
     private int age;
 
     @NotBlank
