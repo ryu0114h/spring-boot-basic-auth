@@ -2,9 +2,7 @@ package com.example.springBootRestApi.service;
 
 import com.example.springBootRestApi.model.User;
 import java.util.List;
-import org.springframework.stereotype.Service;
 
-@Service
 public interface UserService {
 
     List<User> getUsers();
