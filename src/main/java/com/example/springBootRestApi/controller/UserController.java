@@ -25,28 +25,28 @@ public class UserController {
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getUsers() {
-        return new ResponseEntity(userService.getUsers(), HttpStatus.OK);
+        return new ResponseEntity<List<User>>(userService.getUsers(), HttpStatus.OK);
     }
 
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) {
-        return new ResponseEntity(userService.getUser(id), HttpStatus.OK);
+        return new ResponseEntity<User>(userService.getUser(id), HttpStatus.OK);
     }
 
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@Validated @RequestBody User user) {
-        return new ResponseEntity(userService.createUser(user), HttpStatus.CREATED);
+        return new ResponseEntity<User>(userService.createUser(user), HttpStatus.CREATED);
     }
 
     @PatchMapping("/users/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long id) {
-        return new ResponseEntity(userService.updateUser(id, user), HttpStatus.CREATED);
+        return new ResponseEntity<User>(userService.updateUser(id, user), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/users/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
     }
 
 }
