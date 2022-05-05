@@ -25,10 +25,10 @@ public class UserServiceImpl implements UserService {
         Optional<User> optionalUser = userRepository.findById(id);
 
         if (optionalUser.isEmpty()) {
-            throw new Error("ユーザーが存在しません。");
+            throw new RuntimeException("ユーザーが存在しません。");
         }
 
-        return userRepository.findById(id).get();
+        return optionalUser.get();
     }
 
     @Override
