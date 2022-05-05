@@ -3,6 +3,8 @@ package com.example.springBootRestApi.controller;
 import com.example.springBootRestApi.model.User;
 import com.example.springBootRestApi.service.UserService;
 import java.util.List;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,28 +24,29 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public ResponseEntity<List<User>> getUsers() {
+        return new ResponseEntity(userService.getUsers(), HttpStatus.OK);
     }
 
     @GetMapping("/users/{id}")
-    public User getUser(@PathVariable Long id) {
-        return userService.getUser(id);
+    public ResponseEntity<User> getUser(@PathVariable Long id) {
+        return new ResponseEntity(userService.getUser(id), HttpStatus.OK);
     }
 
     @PostMapping("/users")
-    public User createUser(@Validated @RequestBody User user) {
-        return userService.createUser(user);
+    public ResponseEntity<User> createUser(@Validated @RequestBody User user) {
+        return new ResponseEntity(userService.createUser(user), HttpStatus.CREATED);
     }
 
     @PatchMapping("/users/{id}")
-    public User updateUser(@RequestBody User user, @PathVariable Long id) {
-        return userService.updateUser(id, user);
+    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long id) {
+        return new ResponseEntity(userService.updateUser(id, user), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/users/{id}")
-    public void deleteUser(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
 }
